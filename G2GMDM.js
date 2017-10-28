@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WME G2GMDM
 // @name:es      WME G2GMDM - Vamoj pa Gaia
-// @version      1.0.0
+// @version      1.1
 // @description  WME Go to GaiaMDM. Redirects to Gaia MDM page on current position by clicking on wme coordinates label.
 // @description:es WME Go to GaiaMDM - Vamoj pa Gaia te lleva directito a la mijma posicion en el mapa de gaia pa que no tengas que hacer tantos clics puej.
 // @author       abdielisai
@@ -44,14 +44,14 @@
 
     //> Appends a link to permalinks section on status bar
     function createLink(){
-        var $a = $("<a href='#' data-toggle='tooltip' title='Ir a Gaia'><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAGUSURBVHjapJO/bhNBEMZ/570zMYazcJQ0LtNEAhHJVUIf+tCkyDOkTIngDdLzCBShygtQIhkJBBEUUf5YJAgpiXPnHLt73h0Kh7szBCQr0+yOZuab3W++CUSE21gA1IF71+c0ZoFhCLTWdl78+DO6s/Zywj95tv4XQufN6/kQaDpxLM0t/Ldd/dHD8ZMDEAHz4SNAMwRU7hypzTjX6T8B8qPj4q7aD5A8B1AhgMktl+aKxFxNFDlrcXpIPW7jk6QkTilGxgAQAmijOdcpic34PZU01+xub9L/+o6NrVf4wWWJLGC1LgF+asMB30lMVuR8+fQeOzyDGc/nvbcsHB4WsVoco1WtCpBRi+7gxRdJZ9kx/fYiqhHj5jqIL2MyytHWV76gDVEzwldE9aT7lFZjFucDuo+XOfXPK4yOMGMSxwBWa0K5S1AhMG60WemuViRXRkUEbSskWmuZQaiPh3KzZKOIooN4TAXAeucZ7J9OFPR6vQm/P7i4Uc4B0AI6wP0pdyEFvgWAul4kNSWAA2xw23X+NQA6rbJDhz7nIAAAAABJRU5ErkJggg==' width='16px' height='16px'></a>");
+        var $a = $("<a href='#' data-toggle='tooltip' title='Ir a Gaia'><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAINSURBVDhPnZPfS1NhGMcf6A8QgpIVpczN82vKCCyoLvpxWdRutMn5uTGhvJEoiIl0kxeDLOqiKBqSsKCrrIyCJhGlIl14IavAMFs4IU3BmIUz9+054w3GcKF94L047/t8v+f7Puc5VBVZ95Bih0ixukhxoiQ7+8TJJtCcTvLpX8lrgBrcZYJ2t6+SbKZI7vCIqipoVjf5LHiOX8SlW4MYHn+P/icjOBS7CpKjIMmaoGZjp6iuQLWDVNe+5j8Rx0xuHuX8LhYRS6RAfhukmNeFogLF6CPJwY1HI3g9vYJnk9+R/rCIpZVCySRfKMB/qgdU3zZHgXCtUJXREE5vP3oBw5lZJMe+4Vo6i97nMxiaXCgZ/FoDTncnQXtD66TpLUJVhi/8quZwF95+nMXSz3VkcnlcfjqNHl73x+fwYuoHQvF7oLpqBrJ50+347cE3pTe6vPuyjP6xHB5OLCC7mId0Ms4JwvMkRXcJVRmqtZ/8erH2yHmMZj4Li78UEe0dAPm4iaqVFIoN0OyE2+mag504m3iAgaFR9KVeosW4wmKeh0b7E8/JHlG9Aa2t29jkMckRvmsbd/yM23WQVwfvL/OXOiAq/0EwsoM0c4qaYm5cFjqgAA+RauuiYhOozjFq1AsU4CTNHWxi3BEnW0Ax71LwnJsgW0q1ZSS7nqOv8jXiYuc/0Ph3bop4xVMFRH8AgigQaceEwpQAAAAASUVORK5CYII=' width='20px' height='20px' align='left' hspace='2' vspace='2'></a>");
         $a[0].onclick = go2GMDM;
         $(".WazeControlPermalink").append($a);
     }
 
     //> Opens a new MDM window on current position
     function go2GMDM(){
-        var link = $(".fa.fa-link.permalink")[0].href;
+        var link = $(".permalink")[0].href;
         //> Extracts coordinates from element inner text and encode them into base64
         window.open("http://gaia.inegi.org.mx/mdm6/?v="+btoa("lat:"+getQueryString(link, 'lat')+",lon:"+getQueryString(link,'lon')+",z:"+(parseInt(getQueryString(link,'zoom'))+8)));
     }
